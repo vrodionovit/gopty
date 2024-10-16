@@ -7,11 +7,14 @@ import (
 	"gioui.org/app"
 	"gioui.org/io/key"
 	"gioui.org/op"
+	"gioui.org/unit"
 )
 
 func main() {
 	go func() {
+
 		w := new(app.Window)
+		w.Option(app.Title("Term"), app.Size(unit.Dp(1200), unit.Dp(800)))
 
 		err := run(w)
 		if err != nil {
