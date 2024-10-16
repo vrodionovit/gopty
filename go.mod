@@ -1,6 +1,6 @@
 module gopty
 
-go 1.21.6
+go 1.21
 
 require gioui.org v0.7.1
 
