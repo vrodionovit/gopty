@@ -6,8 +6,11 @@ import (
 
 	"gioui.org/app"
 	"gioui.org/io/key"
+	"gioui.org/layout"
 	"gioui.org/op"
 	"gioui.org/unit"
+	"gioui.org/widget"
+	"gioui.org/widget/material"
 )
 
 func main() {
@@ -32,6 +35,11 @@ func run(w *app.Window) error {
 	if err := grid.SetFontFromPath(grid.LoadSystemFonts()[0]); err != nil {
 		log.Printf("Error setting font: %v", err)
 	}
+	// Создаем кнопку
+	var button widget.Clickable
+
+	// Создаем тему для материального дизайна
+	th := material.NewTheme()
 
 	grid.SetText("Привет, мир!\nЭто тестовый текст для TermGrid.\nОн занимает несколько строк.")
 
@@ -44,6 +52,12 @@ func run(w *app.Window) error {
 
 			// Обновляем размер TermGrid при изменении размера окна
 			grid.Resize(gtx.Constraints.Max.X, gtx.Constraints.Max.Y)
+			// Отрисовываем кнопку
+			button.Layout(gtx, func(gtx layout.Context) layout.Dimensions {
+				return material.Button(th, &button, "Нажми меня").Layout(gtx)
+			})
+
+			// Обрабатываем нажатие кнопки
 
 			// Отрисовываем TermGrid
 			grid.Layout(gtx)
